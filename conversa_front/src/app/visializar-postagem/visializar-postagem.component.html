@@ -1,0 +1,28 @@
+<section class="container flex-box">
+  <div class="postagem" *ngIf="postagem">
+    <div class="box-img">
+      <img src="{{ postagem.imagem }}" alt="">
+    </div>
+    <div class="box-text">
+      <h1>{{ postagem.titulo }}</h1>
+      <p>{{ postagem.conteudo }}</p>
+    </div>
+
+    <div class="box-mensagens">
+      <ul>
+        <li *ngFor="let comentario of comentarios">
+          <h3>{{ comentario.Autor }}</h3>
+          <p>{{ comentario.comentario }}</p>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="box-caixa-mensagem">
+      <input #mensagem type="text" name="mensagem" placeholder="Escrever mensagem">
+      <button (click)="comentar(mensagem.value, postagem.idPostagem)">Comentar</button>
+    </div>
+  </div>
+
+
+</section>

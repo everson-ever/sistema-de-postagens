@@ -1,0 +1,44 @@
+<section class="box-home container">
+
+  <section class="box-main">
+
+    <div class="box-postagens" >
+      <ul class="lista-postagens">
+        <li *ngFor="let postagem of this.postagens">
+            <div class="img-postagem">
+              <img src="{{ postagem.imagem }}">
+              <button (click)="destroy(postagem.idPostagem)">Deletar</button>
+            </div>
+            <a [routerLink]='["/postagens", postagem.idPostagem]'>
+              <div class="texto-postagem">
+                <h2>{{ postagem.titulo }}</h2>
+                <p>{{ postagem.conteudo }}</p>
+              </div>
+            </a>
+
+          <div class="autor-categoria">
+              <p>{{ postagem.autor }}</p>
+              <p>{{ postagem.categoria }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
+
+
+     <div class="box-categorias">
+      <p class="titulo">Pesquise por Categorias</p>
+      <ul class="lista-categorias">
+        <li>Tecnologia da Informação</li>
+        <li>Política</li>
+        <li>Natureza</li>
+        <li>Moda</li>
+
+      </ul>
+    </div>
+
+
+  </section>
+
+</section>

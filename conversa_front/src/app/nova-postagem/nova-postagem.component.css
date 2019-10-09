@@ -1,0 +1,96 @@
+.box-nova-postagem {
+	width: 100%;
+	max-width: 100%;
+	padding: 25px 10px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.box-titulo {
+	width: 650px;
+	max-width: calc(100% - 20px);
+	background: linear-gradient(#ae77dd, #9462c0);
+	margin: 20px auto;
+	border-radius: 20px;
+	padding: 5px 0;
+	box-shadow: 1px 0px 2px #cd9cf7;
+}
+
+.titulo {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.2em;
+	text-transform: uppercase;
+}
+
+.box-nova-postagem form {
+	width: 500px;
+	max-width: 100%;
+	background-color: #fff;
+	border-radius: 5px;
+	padding: 80px 15px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+
+.box-nova-postagem .box-input {
+	width: 100%;
+	max-width: 100%;
+	padding: 8px 0;
+}
+
+.box-nova-postagem .box-input label {
+	display: block;
+	font-size: 1.1em;
+	color: #333;
+}
+
+.box-nova-postagem .box-input input,
+.box-nova-postagem .box-input select {
+	width: 100%;
+	height: 37px;
+	padding-left: 10px;
+	border: 1px solid rgba(17, 17, 17, 0.2);
+	border-radius: 3px;
+}
+
+.box-nova-postagem textarea {
+	width: 100%;
+	max-width: 100%;
+	height: 120px;
+	padding-top: 5px;
+	padding-left: 10px;
+	border: 1px solid rgba(17, 17, 17, 0.2);
+}
+
+.box-nova-postagem button {
+	width: 280px;
+	max-width: calc(100% - 20px);
+	margin: 0 auto;
+	margin-top: 45px;
+	display: block;
+	border-radius: 3px;
+	border: none;
+	background-color: #cd9cf7;
+	color: #fff;
+	cursor: pointer;
+	font-size: 1.2em;
+	padding: 10px 25px;
+}
+
+.box-nova-postagem button:hover {
+	background-color: #a354e7;
+}
+
+.erro {
+	color: rgb(236, 70, 70);
+	margin-top: 4px;
+	display: block;
+}

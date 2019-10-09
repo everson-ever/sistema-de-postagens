@@ -1,0 +1,46 @@
+<section class="box-nova-postagem">
+
+    <div class="box-titulo">
+        <h1 class="titulo">Cadastre aqui um novo post</h1>
+    </div>
+
+
+  <form #fm="ngForm" (ngSubmit)="cadastrar(fm)" autocomplete="off">
+
+
+    <div class="box-input">
+			<label>Titulo da publicação</label>
+			<input type="text" name="titulo" placeholder="Qual título?"
+      #titulo="ngModel" [(ngModel)]="postagem.titulo"   required minlength="10" >
+       <span class="erro" *ngIf="titulo.hasError('required') && (titulo.dirty || titulo.touched)">Este campo é obrigatório</span>
+		</div>
+
+    <div class="box-input">
+			<label>Imagem</label>
+			<input type="text" name="imagem" placeholder="Insira o link de uma imagem"
+      #imagem="ngModel" [(ngModel)]="postagem.imagem"  required minlength="10">
+       <span class="erro" *ngIf="imagem.hasError('required') && (imagem.dirty || imagem.touched)">Este campo é obrigatório</span>
+		</div>
+
+    <div class="box-input">
+			<label>Selecione uma categoria</label>
+			<select name="categoria" #categoria="ngModel" [(ngModel)]="postagem.categoria" required>
+        <option>Selecionar</option>
+        <option value="1">Tecnologia da Informação</option>
+        <option value="2">Política</option>
+        <option value="3">Natureza</option>
+        <option value="4">Moda</option>
+      </select>
+       <span class="erro" *ngIf="categoria.hasError('required') && (categoria.dirty || categoria.touched)">Selecione uma categoria</span>
+		</div>
+
+    <div class="box-input">
+			<textarea name="conteudo" placeholder="Escrever Texto" #conteudo="ngModel" [(ngModel)]="postagem.conteudo" required></textarea>
+       <span class="erro" *ngIf="conteudo.hasError('required') && (conteudo.dirty || conteudo.touched)">Este campo é obrigatório</span>
+		</div>
+
+    <button type="submit" [disabled]="fm.invalid" >Cadastrar</button>
+
+
+  </form>
+</section>

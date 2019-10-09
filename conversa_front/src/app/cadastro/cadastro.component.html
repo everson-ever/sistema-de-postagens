@@ -1,0 +1,70 @@
+<section class="box-cadastro">
+
+  <div class="box-titulo">
+    <h1 class="title">Cadastre-se e compartilhe <br/> conteúdo com amigos</h1>
+  </div>
+
+  <!--<div *ngIf="status" class="modal-login">
+    <p>Cadastro Realizado</p>
+    <a routerLink="">Fazer Login</a>
+  </div>-->
+
+
+	<form #fm="ngForm" (ngSubmit)="cadastrar(fm)" autocomplete="off">
+		<div class="box-input">
+			<label>Nome</label>
+			<input type="text" name="nome" placeholder="Qual seu nome?"
+      #nome="ngModel" [(ngModel)]="usuario.nome"   required minlength="10" maxlength="50">
+       <span class="erro" *ngIf="nome.hasError('minlength') && (nome.dirty || nome.touched)">Digite o nome completo</span>
+       <span class="erro" *ngIf="nome.hasError('required') && (nome.dirty || nome.touched)">Este campo é obrigatório</span>
+		</div>
+
+		<div class="box-input">
+			<label>Email</label>
+			<input type="email" name="email" placeholder="Qual seu email?"
+      #email="ngModel" [(ngModel)]="usuario.email" required>
+      <span class="erro" *ngIf="email.hasError('required') && (email.dirty || email.touched)">Digite seu e-mail</span>
+		</div>
+
+		<div class="box-input">
+			<label>Data de Nascimento</label>
+			<input type="date" name="dataNascimento" placeholder="Qual sua data de nascimento?"
+      #nascimento="ngModel" [(ngModel)]="usuario.dataNascimento" required>
+      <span class="erro" *ngIf="nascimento.hasError('required') && (nascimento.dirty || nascimento.touched)">Digite uma data de nascimento</span>
+		</div>
+
+		<div class="box-input">
+			<label>Selecione seu sexo</label>
+			<select name="idSexo" #sexo="ngModel" [(ngModel)]="usuario.idSexo" required>
+        <option>Selecionar</option>
+        <option value="1">Masculino</option>
+        <option value="2">Feminino</option>
+      </select>
+       <span class="erro" *ngIf="sexo.hasError('required') && (sexo.dirty || sexo.touched)">Selecione seu sexo</span>
+		</div>
+
+    <div class="box-input">
+			<label>Selecione sua cidade</label>
+			<select name="idEndereco" #endereco="ngModel" [(ngModel)]="usuario.idEndereco" required>
+        <option>Selecionar</option>
+        <option value="2">Natal</option>
+        <option value="3">Goianinha</option>
+        <option value="1">São José de Mipibu</option>
+      </select>
+       <span class="erro" *ngIf="endereco.hasError('required') && (endereco.dirty || endereco.touched)">Selecione sua cidade</span>
+		</div>
+
+    <div class="box-input">
+			<label>Senha</label>
+			<input type="password" name="senha" placeholder="Escolha uma senha"
+      #senha="ngModel" [(ngModel)]="usuario.senha" required minlength="6" maxlength="20">
+       <span class="erro" *ngIf="senha.hasError('minlength') && (senha.dirty || senha.touched)">A senha deve ter mais de 5 dígitos</span>
+       <span class="erro" *ngIf="senha.hasError('required') && (senha.dirty || senha.touched)">Escolha uma senha</span>
+		</div>
+
+
+    <button type="submit" [disabled]="fm.invalid" >Cadastrar</button>
+
+    <p class="link-login">Já possui conta? <a routerLink="">Clique aqui</a></p>
+	</form>
+</section>

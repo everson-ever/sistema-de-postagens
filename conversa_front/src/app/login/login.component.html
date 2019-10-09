@@ -1,0 +1,34 @@
+<section class="box-login">
+
+
+  <div class="box-titulo">
+      <h1 class="titulo">Faça Login no Sistema</h1>
+  </div>
+
+
+  <form  #fm="ngForm" (ngSubmit)="login(fm)" autocomplete="off">
+    <div class="box-img">
+      <img src="https://icon-library.net/images/login-icon/login-icon-9.jpg" alt="">
+    </div>
+
+    <div class="box-input">
+      <input type="email" name="email" placeholder="Digite seu E-mail" #email="ngModel" [(ngModel)]="emailUsuario"
+      required>
+       <span class="erro" *ngIf="email.hasError('required') && (email.dirty || email.touched)">Digite seu email</span>
+
+    </div>
+
+    <div class="box-input">
+      <input type="password" name="senha" placeholder="Digite sua senha" #senha="ngModel" [(ngModel)]="senhaUsuario"
+      required>
+       <span class="erro" *ngIf="senha.hasError('required') && (senha.dirty || senha.touched)">Digite sua senha</span>
+    </div>
+    <span class="erro login-invalido" *ngIf="!status">Usuário ou senha inválidos</span>
+
+    <button type="submit" [disabled]="fm.invalid">Entrar</button>
+
+    <p class="link-cadastrar">Não é cadastrado? <a routerLink="/cadastro">Clique aqui</a></p>
+    <p class="link-cadastrar">Esqueceu a senha? <a routerLink="/cadastro">Clique aqui</a></p>
+  </form>
+
+</section>

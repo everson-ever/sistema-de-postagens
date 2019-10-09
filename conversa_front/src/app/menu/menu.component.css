@@ -1,0 +1,82 @@
+.box-menu {
+	background-color: #ae77dd;
+}
+
+.box-menu .menu {
+	max-width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.menu li {
+	/* padding: 10px 0; */
+}
+
+.nome-usuario {
+	align-self: stretch;
+}
+
+.menu li a {
+	padding: 0 20px;
+	font-size: 0.8125em;
+	line-height: 50px;
+	font-weight: 400;
+	color: #fff;
+}
+
+.btn-sair {
+	margin-left: 50px;
+	cursor: pointer;
+}
+
+/* .btn-sair a {
+	color: red !important;
+} */
+
+.menu li a:hover {
+	color: #333;
+}
+
+.active {
+	color: #333;
+}
+
+.box-input-pesquisa {
+	width: 100%;
+	max-width: 100%;
+	align-self: center;
+	margin: 15px 20px 15px 0;
+	display: flex;
+}
+
+.box-input-pesquisa input {
+	height: 37px;
+	width: 100%;
+	max-width: 100%;
+	border: 1px solid rgba(17, 17, 17, 0.3);
+	border-radius: 3px 0 0 3px;
+	padding-left: 10px;
+	transition: 1s;
+}
+
+/* .box-input-pesquisa input:focus {
+	max-width: 100%;
+	transition: 1s;
+} */
+
+.box-input-pesquisa button {
+	height: 37px;
+	padding: 0 10px;
+	border: none;
+	border-radius: 0 3px 3px 0;
+	background-color: rgb(203, 119, 214);
+	color: #fff;
+	font-size: 1em;
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 850px) {
+	.box-input-pesquisa {
+		margin: 15px 10px 15px 10px;
+	}
+}

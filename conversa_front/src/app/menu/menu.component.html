@@ -1,0 +1,36 @@
+<section class="box-menu">
+  <div class="container flex-box space-between" *ngIf="mostraMenu()">
+    <ul class="menu">
+        <li>
+          <a routerLinkActive="active" routerLink="/home">Início</a>
+        </li>
+        <li >
+          <a routerLinkActive="active" routerLink="/minhas-postagens">Minhas Postagens</a>
+        </li>
+
+        <li>
+          <a routerLinkActive="active" routerLink="/postagens-edicao">Postagens em Edição</a>
+        </li>
+
+        <li>
+          <a routerLinkActive="active" routerLink="/nova-postagem">Novas Postagem</a>
+        </li>
+
+        <li class="btn-sair" >
+          <a routerLinkActive="active" (click)="logoff()">Sair</a>
+        </li>
+
+        <li *ngIf="nomeUsuario !== undefined" class="nome-usuario">
+          <a>{{ nomeUsuario }}</a>
+        </li>
+
+
+    </ul>
+
+    <!--<div class="box-input-pesquisa">
+      <input type="text" placeholder="Pesquisar..." name="pesquisa">
+      <button type="submit">Pesquisar</button>
+    </div>-->
+  </div>
+
+</section>

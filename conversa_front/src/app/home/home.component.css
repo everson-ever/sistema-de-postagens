@@ -1,0 +1,155 @@
+.box-home {
+	padding-top: 60px;
+	margin-bottom: 50px;
+}
+
+.box-main {
+	/* width: calc(100% - 200px);
+	max-width: calc(100%);
+  margin: 0 auto; */
+	max-width: 100%;
+	padding-top: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+.box-categorias {
+	background-color: #fff;
+	width: 370px;
+	max-width: 100%;
+	border-radius: 3px;
+	margin: 0 10px;
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+}
+
+.box-categorias .titulo {
+	width: calc(100% - 20px);
+	max-width: 100%;
+	padding: 15px 0;
+	font-size: 1.2em;
+	border-top: 1px solid rgba(187, 153, 209, 0.5);
+	margin-bottom: 50px;
+	text-align: center;
+	font-size: 1.6em;
+	line-height: 20px;
+}
+
+.lista-categorias {
+	width: calc(100% - 20px);
+	max-width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+}
+
+.lista-categorias li {
+	width: 100%;
+	padding: 15px 0;
+	font-size: 1.2em;
+	border-top: 1px solid rgba(187, 153, 209, 0.5);
+	padding-left: 8px;
+	cursor: pointer;
+	border-radius: 3px;
+	color: #8a51af;
+}
+
+.lista-categorias li:hover {
+	background-color: rgba(187, 153, 209, 0.5);
+}
+
+.box-postagens {
+	background-color: #fff;
+	/* flex: 1 0 500px; */
+	flex: 1;
+	border-radius: 2px;
+	margin-right: 10px;
+}
+
+.lista-postagens {
+	width: calc(100% - 100px);
+	max-width: calc(100% - 20px);
+	padding: 40px 10px;
+	margin: 0 auto;
+}
+
+.lista-postagens li {
+	background-color: #fff;
+	border-radius: 3px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 40px 10px;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #cd9cf7;
+}
+
+.lista-postagens li a {
+	color: #333;
+}
+
+.autor-categoria p {
+	font-size: 1em;
+	color: rgb(128, 128, 128);
+}
+
+.img-postagem {
+	width: 80%;
+	max-width: 100%;
+}
+
+.img-postagem img {
+	border-radius: 3px;
+}
+
+.texto-postagem {
+	padding: 10px 0;
+}
+
+.texto-postagem h2 {
+	font-size: 2em;
+	color: #333;
+	font-weight: 700;
+	line-height: 33px;
+	margin-top: 10px;
+	margin-bottom: 25px;
+	border-bottom: 4px solid #cd9cf7;
+	display: inline-block;
+	padding-bottom: 9px;
+}
+
+.texto-postagem p {
+	font-size: 1.1em;
+	line-height: 1.4em;
+}
+
+@media only screen and (max-width: 800px) {
+}
+
+@media only screen and (max-width: 420px) {
+	.box-main {
+		width: 100%;
+		padding-bottom: 0;
+	}
+
+	.box-categorias {
+		margin-bottom: 25px;
+	}
+
+	.lista-postagens {
+		width: 100%;
+		margin-bottom: 0;
+	}
+
+	.img-postagem {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.box-postagens {
+		margin-right: 0;
+	}
+}
