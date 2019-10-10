@@ -1,4 +1,5 @@
 const query = require('../../db/conection');
+const jwt = require('jsonwebtoken');
 
 class Usuario {
 	constructor() {
@@ -32,6 +33,14 @@ class Usuario {
 	}
 
 	update() {}
+
+	generateToken(data) {
+		let token = jwt.sign({ idUsuario: data.idUsuario, nome: data.nome, admin: data.admin }, 'projetoweb2', {
+			expiresIn: 86400
+		});
+
+		return token;
+	}
 }
 
 module.exports = new Usuario();

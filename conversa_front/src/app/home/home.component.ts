@@ -9,7 +9,7 @@ import { ChatService } from '../services/chat.service';
 	styleUrls: [ './home.component.css' ]
 })
 export class HomeComponent implements OnInit {
-	public postagens: Array<Postagem>;
+	public postagens: Postagem;
 
 	constructor(private postagemService: PostagemService, private chatService: ChatService) {}
 
@@ -17,12 +17,7 @@ export class HomeComponent implements OnInit {
 		this.getAll();
 		this.chatService.event = 'postagem';
 		this.chatService.messages.subscribe((msg) => {
-			// if (this.postagem.idPostagem == msg.idPost) {
-			//console.log(msg);
-			//this.postagens.push(msg['post']);
-			//console.log('Teste ==>', this.postagens);
 			this.getAll();
-			// }
 		});
 	}
 

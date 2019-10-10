@@ -8,8 +8,8 @@
       <p>{{ postagem.conteudo }}</p>
     </div>
 
-    <div class="box-mensagens">
-      <ul>
+    <div class="box-mensagens" >
+      <ul #boxMensagens>
         <li *ngFor="let comentario of comentarios">
           <h3>{{ comentario.Autor }}</h3>
           <p>{{ comentario.comentario }}</p>
@@ -20,7 +20,7 @@
 
     <div class="box-caixa-mensagem">
       <input #mensagem type="text" name="mensagem" placeholder="Escrever mensagem">
-      <button (click)="comentar(mensagem.value, postagem.idPostagem)">Comentar</button>
+      <button (click)="comentar(mensagem.value, postagem.idPostagem, boxMensagens)">Comentar</button>
     </div>
   </div>
 

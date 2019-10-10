@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PostagemService } from '../services/postagem.service';
 import { Postagem } from '../models/Postagem';
 import { ActivatedRoute } from '@angular/router';
-import { WebsocketService } from '../services/websocket.service';
 import { ChatService } from '../services/chat.service';
+import { Comentario } from '../models/Comentario';
 
 @Component({
 	selector: 'app-visializar-postagem',
@@ -12,8 +12,10 @@ import { ChatService } from '../services/chat.service';
 })
 export class VisializarPostagemComponent implements OnInit {
 	public postagem: Postagem;
-	public comentarios: Array<any>;
+	public comentarios: Comentario[];
 	public id: number;
+	@ViewChild('boxMensagens', { static: false })
+	boxMensagens: ElementRef;
 
 	constructor(
 		private postagemService: PostagemService,
@@ -32,21 +34,34 @@ export class VisializarPostagemComponent implements OnInit {
 	}
 
 	public getComentarios() {
-		this.postagemService.getMessages(this.id).subscribe((data) => {
-			this.comentarios = data;
-		});
+		this.postagemService.getMessages(this.id).subscribe(
+			(data) => {
+				this.comentarios = data;
+			},
+			(error) => {
+				console.log(error);
+			},
+			() => {
+				this.boxMensagemScroll();
+			}
+		);
 	}
 
 	public comentar(comentario: string, idPost: number) {
 		this.postagemService.comentar(comentario, idPost).subscribe((data) => {
 			this.getComentarios();
+			//this.boxMensagemScroll();
 		});
 	}
 
+	public boxMensagemScroll() {
+		this.boxMensagens.nativeElement.scrollTop = this.boxMensagens.nativeElement.scrollHeight;
+	}
+
 	ngOnInit() {
-		// this.chatService.event = 'comentario';
 		this.chatService.messages.subscribe((comentario) => {
 			if (this.postagem.idPostagem == comentario.idPost) {
+				this.boxMensagemScroll();
 				this.comentarios.push(comentario);
 			}
 		});

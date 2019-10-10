@@ -1,5 +1,4 @@
 const Usuario = require('../models/Usuario');
-const jwt = require('jsonwebtoken');
 
 class SessionController {
 	async session(req, res) {
@@ -9,13 +8,14 @@ class SessionController {
 
 		if (usuario[0].length === 1) {
 			const { idUsuario, nome, admin } = usuario[0][0];
+			const dataToken = { idUsuario, nome, admin };
 
-			let token = jwt.sign({ idUsuario, nome, admin }, 'projetoweb2', { expiresIn: 86400 });
+			const token = Usuario.generateToken(dataToken);
 
 			return res.status(200).json({ status: true, token });
 		} else {
 			let message = 'User Not Found';
-			return res.json({ status: false, message });
+			return res.status(404).json({ status: false, message });
 		}
 	}
 }

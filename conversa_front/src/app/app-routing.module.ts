@@ -10,6 +10,7 @@ import { AuthguardGuard } from './auth-guard.guard';
 import { GuestGuardGuard } from './guest-guard.guard';
 import { VisializarPostagemComponent } from './visializar-postagem/visializar-postagem.component';
 import { NovaPostagemComponent } from './nova-postagem/nova-postagem.component';
+import { EditarComponent } from './editar/editar.component';
 
 const routes: Routes = [
 	{ path: '', component: LoginComponent, canActivate: [ GuestGuardGuard ] },
@@ -19,7 +20,8 @@ const routes: Routes = [
 	{ path: 'postagens-edicao', component: PostagensEdicaoComponent, canActivate: [ AuthguardGuard ] },
 	{ path: 'postagens', component: TodasPostagensComponent, canActivate: [ AuthguardGuard ] },
 	{ path: 'postagens/:id', component: VisializarPostagemComponent, canActivate: [ AuthguardGuard ] },
-	{ path: 'nova-postagem', component: NovaPostagemComponent, canActivate: [ AuthguardGuard ] }
+	{ path: 'nova-postagem', component: NovaPostagemComponent, canActivate: [ AuthguardGuard ] },
+	{ path: 'editar-postagem/:id', component: EditarComponent, canActivate: [ AuthguardGuard ] }
 ];
 
 @NgModule({

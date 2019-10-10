@@ -18,6 +18,7 @@ import { AuthInterceptor } from './services/AuthInterceptor';
 import { VisializarPostagemComponent } from './visializar-postagem/visializar-postagem.component';
 import { PostagensComponent } from './postagens/postagens.component';
 import { NovaPostagemComponent } from './nova-postagem/nova-postagem.component';
+import { EditarComponent } from './editar/editar.component';
 
 @NgModule({
 	declarations: [
@@ -31,7 +32,8 @@ import { NovaPostagemComponent } from './nova-postagem/nova-postagem.component';
 		TodasPostagensComponent,
 		VisializarPostagemComponent,
 		PostagensComponent,
-		NovaPostagemComponent
+		NovaPostagemComponent,
+		EditarComponent
 	],
 	imports: [ BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, AngularFontAwesomeModule ],
 	providers: [
