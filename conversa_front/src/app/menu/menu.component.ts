@@ -15,12 +15,8 @@ export class MenuComponent implements OnInit {
 
 	ngOnInit() {}
 
-	public mostraMenu() {
-		if (localStorage.getItem('Session')) {
-			return true;
-		} else {
-			return false;
-		}
+	public mostraMenu(): boolean {
+		return this.loginService.logado();
 	}
 
 	public logoff() {

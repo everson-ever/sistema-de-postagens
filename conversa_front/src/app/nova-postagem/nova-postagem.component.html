@@ -13,6 +13,7 @@
 			<input type="text" name="titulo" placeholder="Qual título?"
       #titulo="ngModel" [(ngModel)]="postagem.titulo"   required minlength="10" >
        <span class="erro" *ngIf="titulo.hasError('required') && (titulo.dirty || titulo.touched)">Este campo é obrigatório</span>
+       <span class="erro" *ngIf="titulo.hasError('minlength') && (titulo.dirty || titulo.touched)">Digite no mínimo 10 caracteres</span>
 		</div>
 
     <div class="box-input">

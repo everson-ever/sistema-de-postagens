@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Postagem } from '../models/Postagem';
 import { PostagemService } from '../services/postagem.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-postagens',
@@ -12,14 +12,23 @@ export class PostagensComponent implements OnInit {
 	@Input() postagens;
 	@Input() idDeletar;
 
-	constructor(private postagemService: PostagemService, private router: Router) {}
+	constructor(private postagemService: PostagemService, private router: Router, private route: ActivatedRoute) {}
 
-	public destroy(id: number) {
-		this.postagemService.destroy(id).subscribe((data) => {
-			if (data === 200) {
-				this.router.navigate([ '/minhas-postagens' ]);
+	public destroy(postagem: Postagem) {
+		this.postagemService.destroy(postagem.idPostagem).subscribe((data) => {
+			if (data['status']) {
+				let indice = this.postagens.indexOf(postagem);
+				this.postagens.splice(indice, 1);
+				console.log(this.postagens);
 			}
 		});
+	}
+
+	public exibirBotaoDeletar() {
+		if (this.router.url === '/minhas-postagens') {
+			return true;
+		}
+		return false;
 	}
 
 	ngOnInit() {}

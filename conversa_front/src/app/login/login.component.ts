@@ -26,20 +26,29 @@ export class LoginComponent implements OnInit {
 
 	public login(fm: NgForm): void {
 		const usuario = { email: this.emailUsuario, senha: this.senhaUsuario };
-		this.loginService.login(usuario).subscribe((data) => {
-			if (data.status) {
-				try {
-					localStorage.setItem('jwt', data.token);
-					localStorage.setItem(this.generateKeyAuthService.getKeyAuth(), data.token.substr(1, 20));
-					this.router.navigate([ '/home' ]);
-				} catch (e) {
-					return;
-				}
-			} else {
-				this.status = false;
-			}
-		});
+		let usuarioLogado = this.loginService.login(usuario);
 
-		fm.reset();
+		if (usuarioLogado) {
+			this.status = true;
+		} else {
+			this.status = false;
+		}
+
+		// const usuario = { email: this.emailUsuario, senha: this.senhaUsuario };
+		// this.loginService.login(usuario).subscribe((data) => {
+		// 	if (data.status) {
+		// 		try {
+		// 			localStorage.setItem('jwt', data.token);
+		// 			localStorage.setItem(this.generateKeyAuthService.getKeyAuth(), data.token.substr(1, 20));
+		// 			this.router.navigate([ '/home' ]);
+		// 		} catch (e) {
+		// 			return;
+		// 		}
+		// 	} else {
+		// 		this.status = false;
+		// 	}
+		// });
+
+		// fm.reset();
 	}
 }

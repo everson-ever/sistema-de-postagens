@@ -2,12 +2,12 @@
 
   <section class="box-main">
 
-    <div class="box-postagens" >
+    <div class="box-postagens">
       <ul class="lista-postagens">
         <li *ngFor="let postagem of this.postagens">
             <div class="img-postagem">
               <img src="{{ postagem.imagem }}">
-              <button (click)="destroy(postagem.idPostagem)">Deletar</button>
+              <button class="btn-deletar" *ngIf="exibirBotaoDeletar()" (click)="destroy(postagem)">Deletar</button>
             </div>
             <a [routerLink]='["/postagens", postagem.idPostagem]'>
               <div class="texto-postagem">

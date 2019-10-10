@@ -5,7 +5,6 @@ import { Injectable, ɵConsole } from '@angular/core';
 })
 export class GenerateKeyAuthService {
 	private keyAuth: string;
-	private valueAuth;
 
 	constructor() {
 		this.keyAuth = '';
@@ -16,8 +15,7 @@ export class GenerateKeyAuthService {
 		return this.keyAuth;
 	}
 
-	public generateKeyAuth(): string {
+	public generateKeyAuth(): void {
 		this.keyAuth = 'Session';
-		return;
 	}
 }

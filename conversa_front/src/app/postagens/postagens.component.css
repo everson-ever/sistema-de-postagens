@@ -119,6 +119,14 @@
 	border-radius: 3px;
 }
 
+.img-postagem .btn-deletar {
+	background-color: transparent;
+	color: red;
+	font-size: 1.2em;
+	border: none;
+	cursor: pointer;
+}
+
 .texto-postagem {
 	padding: 10px 0;
 }
