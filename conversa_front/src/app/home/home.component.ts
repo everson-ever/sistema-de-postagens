@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostagemService } from '../services/postagem.service';
 import { Postagem } from '../models/Postagem';
 import { ChatService } from '../services/chat.service';
+import { WebsocketService } from '../services/websocket.service';
 
 @Component({
 	selector: 'app-home',
@@ -11,12 +12,16 @@ import { ChatService } from '../services/chat.service';
 export class HomeComponent implements OnInit {
 	public postagens: Postagem;
 
-	constructor(private postagemService: PostagemService, private chatService: ChatService) {}
+	constructor(private postagemService: PostagemService, private webSocketService: WebsocketService) {
+		this.listeningPost();
+	}
 
 	ngOnInit() {
 		this.getAll();
-		this.chatService.event = 'postagem';
-		this.chatService.messages.subscribe((msg) => {
+	}
+
+	public listeningPost() {
+		this.webSocketService.registerPostagemSocket((post) => {
 			this.getAll();
 		});
 	}

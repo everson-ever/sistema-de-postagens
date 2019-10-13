@@ -10,7 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class PostagensComponent implements OnInit {
 	@Input() postagens;
-	@Input() idDeletar;
 
 	constructor(private postagemService: PostagemService, private router: Router, private route: ActivatedRoute) {}
 
@@ -19,7 +18,6 @@ export class PostagensComponent implements OnInit {
 			if (data['status']) {
 				let indice = this.postagens.indexOf(postagem);
 				this.postagens.splice(indice, 1);
-				console.log(this.postagens);
 			}
 		});
 	}

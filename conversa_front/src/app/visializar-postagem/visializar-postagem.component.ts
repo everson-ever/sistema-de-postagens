@@ -4,6 +4,7 @@ import { Postagem } from '../models/Postagem';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from '../services/chat.service';
 import { Comentario } from '../models/Comentario';
+import { WebsocketService } from '../services/websocket.service';
 
 @Component({
 	selector: 'app-visializar-postagem',
@@ -20,11 +21,21 @@ export class VisializarPostagemComponent implements OnInit {
 	constructor(
 		private postagemService: PostagemService,
 		private route: ActivatedRoute,
-		private chatService: ChatService
+		private webSocketService: WebsocketService
 	) {
+		this.listeningComment();
 		this.route.params.subscribe((data) => (this.id = data.id));
 		this.getPostagem();
 		this.getComentarios();
+	}
+
+	public listeningComment() {
+		this.webSocketService.registerComentarioSocket((comment) => {
+			if (this.postagem.idPostagem == comment.idPost) {
+				this.boxMensagemScroll();
+				this.comentarios.push(comment);
+			}
+		});
 	}
 
 	public getPostagem() {
@@ -58,12 +69,5 @@ export class VisializarPostagemComponent implements OnInit {
 		this.boxMensagens.nativeElement.scrollTop = this.boxMensagens.nativeElement.scrollHeight;
 	}
 
-	ngOnInit() {
-		this.chatService.messages.subscribe((comentario) => {
-			if (this.postagem.idPostagem == comentario.idPost) {
-				this.boxMensagemScroll();
-				this.comentarios.push(comentario);
-			}
-		});
-	}
+	ngOnInit() {}
 }
