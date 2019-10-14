@@ -11,7 +11,7 @@ class PostController {
 	async get(req, res) {
 		const { id } = req.params;
 
-		const postagem = await Post.get(id);
+		const postagem = await Post.get(id, 0);
 
 		if (postagem[0].length === 1) {
 			const { visivel, idUsuario: idUsuarioPostagem } = postagem[0][0];
