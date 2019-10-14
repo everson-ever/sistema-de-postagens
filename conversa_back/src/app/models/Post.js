@@ -8,8 +8,8 @@ class Post {
 		return postagens;
 	}
 
-	get(idPostagem) {
-		let sql = `CALL spPostagemUsuario(${idPostagem})`;
+	get(idPostagem, uniqueIdentify) {
+		let sql = `CALL spPostagemUsuario(${idPostagem}, ${uniqueIdentify})`;
 
 		let postagem = query(sql);
 		return postagem;
@@ -24,7 +24,7 @@ class Post {
 	}
 
 	insert(post) {
-		let sql = `CALL spCadastrarPostagem('${post.titulo}','${post.conteudo}','${post.imagem}',1,${post.categoria},${post.idUsuario})`;
+		let sql = `CALL spCadastrarPostagem('${post.titulo}','${post.conteudo}','${post.imagem}', '${post.uniqueIdentify}' ,1,${post.categoria},${post.idUsuario})`;
 
 		let inserted = query(sql);
 		return inserted;

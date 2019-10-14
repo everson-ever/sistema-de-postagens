@@ -8,4 +8,12 @@ connection = mysql.createConnection({
 	database: 'projetoBpAssunto'
 });
 
+// connection.connect(function(err) {
+// 	if (!err) {
+// 		module.exports = promisify(connection.query).bind(connection);
+// 	} else {
+// 		console.log(err.message);
+// 	}
+// });
+
 module.exports = promisify(connection.query).bind(connection);

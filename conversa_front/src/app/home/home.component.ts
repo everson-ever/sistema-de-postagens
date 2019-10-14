@@ -10,7 +10,7 @@ import { WebsocketService } from '../services/websocket.service';
 	styleUrls: [ './home.component.css' ]
 })
 export class HomeComponent implements OnInit {
-	public postagens: Postagem;
+	public postagens: Postagem[];
 
 	constructor(private postagemService: PostagemService, private webSocketService: WebsocketService) {
 		this.listeningPost();
@@ -22,12 +22,14 @@ export class HomeComponent implements OnInit {
 
 	public listeningPost() {
 		this.webSocketService.registerPostagemSocket((post) => {
-			this.getAll();
+			console.log(post);
+			this.postagens.push(post);
 		});
 	}
 
 	public getAll() {
 		this.postagemService.index().subscribe((data) => {
+			console.log(data);
 			this.postagens = data;
 		});
 	}

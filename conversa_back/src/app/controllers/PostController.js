@@ -38,11 +38,16 @@ class PostController {
 
 	async store(req, res) {
 		const { titulo, conteudo, imagem, categoria } = req.body;
-		const post = { titulo, conteudo, imagem, categoria, idUsuario: req.userId };
+
+		const uniqueIdentify = new Date().getTime();
+
+		const post = { titulo, conteudo, imagem, uniqueIdentify, categoria, idUsuario: req.userId };
 
 		let inserted = await Post.insert(post);
 
 		if (inserted.affectedRows === 1) {
+			let post = await Post.get(0, uniqueIdentify);
+			post = post[0][0];
 			req.io.emit('postagem', { post });
 			return res.status(HttpStatus.created).json({ status: true });
 		}
@@ -52,7 +57,7 @@ class PostController {
 	async destroy(req, res) {
 		const { id: idPostagem } = req.params;
 
-		let postagem = await Post.get(idPostagem);
+		let postagem = await Post.get(idPostagem, 0);
 
 		if (postagem[0].length === 1) {
 			const { idUsuario } = postagem[0][0];
