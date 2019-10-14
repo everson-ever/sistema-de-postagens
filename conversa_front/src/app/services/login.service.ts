@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { TokenDecodedService } from './token-decoded.service';
 import { ApiService } from './api.service';
-import { GenerateKeyAuthService } from './generate-key-auth.service';
+import { AuthTokenService } from './auth-token.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,23 +13,18 @@ export class LoginService {
 	constructor(
 		private http: HttpClient,
 		private router: Router,
-		private tokenDecodedService: TokenDecodedService,
 		private apiService: ApiService,
-		private generateKeyAuthService: GenerateKeyAuthService
+		private authTokenService: AuthTokenService
 	) {}
 
 	public login(usuario) {
-		//return this.http.post(`${this.apiService.getBaseUrl()}/session`, usuario);
 		try {
 			let session = this.http.post(`${this.apiService.getBaseUrl()}/session`, usuario);
 
 			session.subscribe((usuarioLogado) => {
 				if (usuarioLogado['status']) {
-					localStorage.setItem('jwt', usuarioLogado['token']);
-					localStorage.setItem(
-						this.generateKeyAuthService.getKeyAuth(),
-						usuarioLogado['token'].substr(1, 20)
-					);
+					this.authTokenService.setToken(usuarioLogado['token']);
+					this.authTokenService.setAuth(this.authTokenService.getToken().substr(1, 20));
 					this.router.navigate([ '/home' ]);
 
 					return usuarioLogado['status'];
@@ -45,8 +38,7 @@ export class LoginService {
 	}
 
 	public logoff() {
-		localStorage.removeItem(this.generateKeyAuthService.getKeyAuth());
-		localStorage.removeItem('jwt');
+		this.authTokenService.removerTokenAuth();
 		// localStorage.removeItem('nome');
 		// localStorage.removeItem('admin');
 
@@ -54,7 +46,7 @@ export class LoginService {
 	}
 
 	public logado() {
-		if (localStorage.getItem(this.generateKeyAuthService.getKeyAuth())) {
+		if (this.authTokenService.getAuth()) {
 			return true;
 		} else {
 			return false;

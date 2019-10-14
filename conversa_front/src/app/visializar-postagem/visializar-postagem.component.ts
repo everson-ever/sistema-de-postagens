@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PostagemService } from '../services/postagem.service';
 import { Postagem } from '../models/Postagem';
 import { ActivatedRoute } from '@angular/router';
-import { ChatService } from '../services/chat.service';
 import { Comentario } from '../models/Comentario';
 import { WebsocketService } from '../services/websocket.service';
 

@@ -7,7 +7,7 @@ export class ApiService {
 	private baseUrl: string;
 
 	constructor() {
-		this.baseUrl = 'http://192.168.0.2:3000/api';
+		this.baseUrl = 'http://10.208.1.31:3000/api';
 	}
 
 	getBaseUrl() {

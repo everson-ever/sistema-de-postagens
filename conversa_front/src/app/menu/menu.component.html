@@ -20,17 +20,10 @@
           <a routerLinkActive="active" (click)="logoff()">Sair</a>
         </li>
 
-        <li *ngIf="nomeUsuario !== undefined" class="nome-usuario">
-          <a>{{ nomeUsuario }}</a>
-        </li>
-
 
     </ul>
 
-    <!--<div class="box-input-pesquisa">
-      <input type="text" placeholder="Pesquisar..." name="pesquisa">
-      <button type="submit">Pesquisar</button>
-    </div>-->
+    <h2 class="nome-usuario">{{ this.nomeUsuario }}</h2>
   </div>
 
 </section>

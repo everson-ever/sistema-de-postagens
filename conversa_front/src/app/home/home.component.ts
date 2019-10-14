@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostagemService } from '../services/postagem.service';
 import { Postagem } from '../models/Postagem';
-import { ChatService } from '../services/chat.service';
 import { WebsocketService } from '../services/websocket.service';
 
 @Component({
