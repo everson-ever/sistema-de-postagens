@@ -36,6 +36,10 @@ class Post {
 
 		let updated = query(sql);
 		return updated;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5a48601c804b10294fe03d47d4b45c869a8b7e73
 	}
 
 	delete(idPostagem) {
