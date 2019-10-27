@@ -54,7 +54,6 @@ class PostController {
 		return res.status(HttpStatus.internalServerError).json({ status: false, message: 'Internal Server Error' });
 	}
 
-<<<<<<< HEAD
 	async update(req, res) {
 		const { idPostagem, titulo, conteudo, imagem, categoria, visivel } = req.body;
 		const post = { idPostagem, titulo, conteudo, imagem, categoria, visivel, idUsuario: req.userId };
@@ -63,16 +62,6 @@ class PostController {
 		if (postagem[0].length === 0) {
 			return res.status(404).json({ status: false, message: 'Not Found' });
 		}
-=======
-	async update(req,res) {
-		const { idPostagem, titulo, conteudo, imagem, categoria,visivel } = req.body;
-		const post = { idPostagem, titulo, conteudo, imagem, categoria,visivel, idUsuario: req.userId };
-
-		let postagem = await Post.get(idPostagem);	
-		if (postagem[0].length === 0) {
-			return res.status(404).json({ status: false, message: 'Not Found' });
-		} 
->>>>>>> 5a48601c804b10294fe03d47d4b45c869a8b7e73
 
 		const { idUsuario: idUsuarioPostagem } = postagem[0][0];
 
@@ -84,17 +73,9 @@ class PostController {
 				return res.status(201).json({ status: true });
 			}
 			return res.status(500).json({ status: false, message: 'Internal Server Error' });
-<<<<<<< HEAD
 		}
 
 		return res.status(401).json({ status: false, message: 'Unauthorized' });
-=======
-			
-		}
-
-		return res.status(401).json({ status: false, message: "Unauthorized" })
-
->>>>>>> 5a48601c804b10294fe03d47d4b45c869a8b7e73
 	}
 
 	async destroy(req, res) {
