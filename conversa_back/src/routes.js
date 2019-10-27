@@ -18,6 +18,7 @@ routes.get('/postagens/:id', authMiddleware, PostController.get);
 routes.post('/postagens', authMiddleware, PostController.store);
 routes.get('/minhas-postagens', authMiddleware, PostController.getPostagensUsuario);
 routes.delete('/postagens/:id', authMiddleware, PostController.destroy);
+routes.put('/postagens/:id', authMiddleware, PostController.update);
 
 routes.get('/comentarios/:id', authMiddleware, ComentarioController.index);
 routes.post('/postagens/comentar', authMiddleware, ComentarioController.store);

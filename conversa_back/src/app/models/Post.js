@@ -30,6 +30,14 @@ class Post {
 		return inserted;
 	}
 
+	update(post) {
+		let sql = `CALL spEditarPostagem(${post.idPostagem},'${post.titulo}','${post.conteudo}',
+		${post.visivel},${post.categoria},'${post.imagem}')`;
+
+		let updated = query(sql);
+		return updated;
+	}
+
 	delete(idPostagem) {
 		let sql = `CALL spDeletarPostagem(${idPostagem});`;
 

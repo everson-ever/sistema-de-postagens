@@ -54,6 +54,30 @@ class PostController {
 		return res.status(HttpStatus.internalServerError).json({ status: false, message: 'Internal Server Error' });
 	}
 
+	async update(req, res) {
+		const { idPostagem, titulo, conteudo, imagem, categoria, visivel } = req.body;
+		const post = { idPostagem, titulo, conteudo, imagem, categoria, visivel, idUsuario: req.userId };
+
+		let postagem = await Post.get(idPostagem);
+		if (postagem[0].length === 0) {
+			return res.status(404).json({ status: false, message: 'Not Found' });
+		}
+
+		const { idUsuario: idUsuarioPostagem } = postagem[0][0];
+
+		if (req.userId === idUsuarioPostagem) {
+			let updated = await Post.update(post);
+
+			if (updated.affectedRows === 1) {
+				req.io.emit('postagem', { post });
+				return res.status(201).json({ status: true });
+			}
+			return res.status(500).json({ status: false, message: 'Internal Server Error' });
+		}
+
+		return res.status(401).json({ status: false, message: 'Unauthorized' });
+	}
+
 	async destroy(req, res) {
 		const { id: idPostagem } = req.params;
 
