@@ -5,8 +5,7 @@ import * as io from 'socket.io-client';
 	providedIn: 'root'
 })
 export class WebsocketService {
-	private listener = 'http://10.208.1.31:3000';
-	private socket;
+	private listener = 'http://192.168.0.2:3000';
 
 	constructor() {}
 

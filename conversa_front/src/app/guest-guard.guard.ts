@@ -10,7 +10,7 @@ export class GuestGuardGuard implements CanActivate {
 
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		try {
-			if (localStorage.getItem('Session')) {
+			if (sessionStorage.getItem('Session')) {
 				this.router.navigate([ '/home' ]);
 				return false;
 			} else {

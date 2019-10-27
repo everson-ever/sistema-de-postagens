@@ -23,7 +23,7 @@
       required>
        <span class="erro" *ngIf="senha.hasError('required') && (senha.dirty || senha.touched)">Digite sua senha</span>
     </div>
-    <span class="erro login-invalido" *ngIf="!status">Usuário ou senha inválidos</span>
+    <span class="erro login-invalido" *ngIf="status">Usuário ou senha inválidos</span>
 
     <button type="submit" [disabled]="fm.invalid">Entrar</button>
 

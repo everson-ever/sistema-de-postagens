@@ -39,9 +39,6 @@ export class LoginService {
 
 	public logoff() {
 		this.authTokenService.removerTokenAuth();
-		// localStorage.removeItem('nome');
-		// localStorage.removeItem('admin');
-
 		this.router.navigate([ '' ]);
 	}
 

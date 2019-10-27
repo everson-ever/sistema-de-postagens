@@ -16,7 +16,7 @@ class ComentarioController {
 
 		if (inserted.affectedRows === 1) {
 			req.io.emit('comentario', { comentario, Autor: req.nomeUsuario, idPost });
-			return res.status(HttpStatus.created).json({ status: true });
+			return res.status(HttpStatus.created).json({ comentario, Autor: req.nomeUsuario });
 		}
 		return res.status(HttpStatus.internalServerError).json({ status: false, message: 'Internal Server Error' });
 	}

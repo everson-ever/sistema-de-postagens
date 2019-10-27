@@ -12,24 +12,24 @@ export class AuthTokenService {
 	constructor(private generateKeyAuthService: GenerateKeyAuthService) {}
 
 	public getToken() {
-		return localStorage.getItem('jwt');
+		return sessionStorage.getItem('jwt');
 	}
 
 	public setToken(token: string) {
-		localStorage.setItem('jwt', token);
+		sessionStorage.setItem('jwt', token);
 	}
 
 	public setAuth(value: string) {
-		localStorage.setItem(this.generateKeyAuthService.getKeyAuth(), value);
+		sessionStorage.setItem(this.generateKeyAuthService.getKeyAuth(), value);
 	}
 
 	public getAuth() {
-		return localStorage.getItem(this.generateKeyAuthService.getKeyAuth());
+		return sessionStorage.getItem(this.generateKeyAuthService.getKeyAuth());
 	}
 
 	public removerTokenAuth() {
-		localStorage.removeItem('token');
-		localStorage.removeItem(this.generateKeyAuthService.getKeyAuth());
+		sessionStorage.removeItem('token');
+		sessionStorage.removeItem(this.generateKeyAuthService.getKeyAuth());
 	}
 
 	public decodePayloadJWT(): any {
@@ -47,6 +47,10 @@ export class AuthTokenService {
 	// }
 
 	public getUserLogged() {
-		return (this.userLogged = this.decodePayloadJWT().nome);
+		try {
+			return (this.userLogged = this.decodePayloadJWT().nome);
+		} catch (err) {
+			return;
+		}
 	}
 }

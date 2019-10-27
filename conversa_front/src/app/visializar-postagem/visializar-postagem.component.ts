@@ -4,6 +4,7 @@ import { Postagem } from '../models/Postagem';
 import { ActivatedRoute } from '@angular/router';
 import { Comentario } from '../models/Comentario';
 import { WebsocketService } from '../services/websocket.service';
+import { resolve } from 'url';
 
 @Component({
 	selector: 'app-visializar-postagem',
@@ -31,8 +32,8 @@ export class VisializarPostagemComponent implements OnInit {
 	public listeningComment() {
 		this.webSocketService.registerComentarioSocket((comment) => {
 			if (this.postagem.idPostagem == comment.idPost) {
-				this.boxMensagemScroll();
 				this.comentarios.push(comment);
+				this.boxMensagemScroll();
 			}
 		});
 	}
@@ -52,20 +53,20 @@ export class VisializarPostagemComponent implements OnInit {
 				console.log(error);
 			},
 			() => {
-				this.boxMensagemScroll();
+				//this.boxMensagemScroll();
 			}
 		);
 	}
 
 	public comentar(comentario: string, idPost: number) {
-		this.postagemService.comentar(comentario, idPost).subscribe((data) => {
-			this.getComentarios();
-			//this.boxMensagemScroll();
+		this.postagemService.comentar(comentario, idPost).subscribe((comment) => {
+			return true;
 		});
 	}
 
 	public boxMensagemScroll() {
 		this.boxMensagens.nativeElement.scrollTop = this.boxMensagens.nativeElement.scrollHeight;
+		//this.boxMensagens.nativeElement.scrollTo(0, 10000);
 	}
 
 	ngOnInit() {}

@@ -9,7 +9,7 @@ import { WebsocketService } from '../services/websocket.service';
 	styleUrls: [ './home.component.css' ]
 })
 export class HomeComponent implements OnInit {
-	public postagens: Array<Postagem>;
+	public postagens: any;
 
 	constructor(private postagemService: PostagemService, private webSocketService: WebsocketService) {
 		this.listeningPost();

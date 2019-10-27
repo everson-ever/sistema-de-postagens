@@ -10,7 +10,7 @@ export class AuthguardGuard implements CanActivate {
 
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		try {
-			if (localStorage.getItem('Session') == localStorage.getItem('jwt').substr(1, 20)) {
+			if (sessionStorage.getItem('Session') == sessionStorage.getItem('jwt').substr(1, 20)) {
 				return true;
 			} else {
 				this.router.navigate([ '' ]);

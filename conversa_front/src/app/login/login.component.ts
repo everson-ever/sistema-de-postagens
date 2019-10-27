@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from '../services/login.service';
-import { Router } from '@angular/router';
-import { GenerateKeyAuthService } from '../services/generate-key-auth.service';
 import { AuthTokenService } from '../services/auth-token.service';
+import { promisify } from 'util';
 
 @Component({
 	selector: 'app-login',
@@ -16,19 +15,21 @@ export class LoginComponent implements OnInit {
 	public status: boolean;
 
 	constructor(private loginService: LoginService, private authTokenService: AuthTokenService) {
-		this.status = true;
+		this.status = false;
 	}
 
 	ngOnInit() {}
 
-	public login(fm: NgForm): void {
+	public async login(fm: NgForm) {
 		const usuario = { email: this.emailUsuario, senha: this.senhaUsuario };
-		let usuarioLogado = this.loginService.login(usuario);
+		let usuarioLogado = await promisify(() => {
+			this.loginService.login(usuario);
+		})();
 
-		if (usuarioLogado) {
+		console.log(usuarioLogado);
+
+		if (!usuarioLogado) {
 			this.status = true;
-		} else {
-			this.status = false;
 		}
 	}
 }
