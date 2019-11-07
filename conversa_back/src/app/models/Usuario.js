@@ -1,13 +1,14 @@
 const query = require('../../db/conection');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 class Usuario {
 	constructor() {
 		//this.connection = connection;
 	}
 
-	get(email, senha) {
-		let sql = `CALL spVerificarLoginUsuario('${email}', '${senha}')`;
+	get(infoPesquisa) {
+		let sql = `CALL spVerificarLoginUsuario('${infoPesquisa}')`;
 
 		let usuario = query(sql);
 		return usuario;
@@ -27,7 +28,7 @@ class Usuario {
 
 	store(usuario, callback) {
 		let sql = `CALL spCadastrarUsuario('${usuario.nome}' ,'${usuario.email}',
-        '${usuario.dataNascimento}', '${usuario.senha}', ${usuario.idSexo}, ${usuario.idEndereco});`;
+        '${usuario.dataNascimento}', '${usuario.criptografada}', ${usuario.idSexo}, ${usuario.idEndereco});`;
 
 		connection.query(sql, callback);
 	}
@@ -40,6 +41,17 @@ class Usuario {
 		});
 
 		return token;
+	}
+
+	async criptografaSenha(senha) {
+		if (senha) {
+			let senhaCriptografada = await bcrypt.hash(senha, 8);
+			return senhaCriptografada;
+		}
+	}
+
+	async checaPassword(senhaCadastrada, senhaComparar) {
+		return bcrypt.compare(senhaComparar, senhaCadastrada);
 	}
 }
 

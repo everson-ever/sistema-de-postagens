@@ -17,7 +17,11 @@ class UsuarioController {
 
 	async store(req, res) {
 		const { nome, email, dataNascimento, senha, idSexo, idEndereco } = req.body;
-		const usuario = { nome, email, dataNascimento, senha, idSexo, idEndereco };
+
+		let criptografada = await Usuario.criptografaSenha(senha);
+
+		const usuario = { nome, email, dataNascimento, criptografada, idSexo, idEndereco };
+		console.log(usuario);
 
 		Usuario.store(usuario, (error, result) => {
 			if (result) {
